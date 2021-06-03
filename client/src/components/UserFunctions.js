@@ -1,13 +1,9 @@
 import axios from 'axios'
+import queryString from 'query-string'
 
-export const register = newUser => {
+export const register = newUser  => {
   return axios
-    .post('http://localhost:3002/register', {
-      firstname: newUser.firstname,
-      lastname: newUser.lastname,
-      email: newUser.email,
-      password: newUser.password
-    })
+    .post('http://localhost:3002/register', newUser)
     .then(response => {
       console.log('Registered')
     })
@@ -15,10 +11,7 @@ export const register = newUser => {
 
 export const login = user => {
   return axios
-    .post('http://localhost:3002/login', {
-      email: user.email,
-      password: user.password
-    })
+    .post('http://localhost:3002/login', user)
     .then(response => {
       localStorage.setItem('usertoken', response.data)
       return response.data

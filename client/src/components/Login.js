@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { login } from './UserFunctions'
+import queryString from 'query-string'
+
 
 class Login extends Component {
   constructor() {
@@ -26,7 +28,7 @@ class Login extends Component {
       password: this.state.password
     }
 
-    login(user).then(res => {
+    login(queryString.stringify(user)).then(res => {
       if (res) {
         this.props.history.push(`/profile`)
       }

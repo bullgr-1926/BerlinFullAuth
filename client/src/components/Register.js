@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { register } from './UserFunctions'
+import queryString from 'query-string'
 
 class Register extends Component {
   constructor() {
     super()
     this.state = {
-      first_name: '',
-      last_name: '',
+      firstname: '',
+      lastname: '',
       email: '',
       password: '',
       errors: {}
@@ -19,6 +20,8 @@ class Register extends Component {
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value })
   }
+
+  
   onSubmit(e) {
     e.preventDefault()
 
@@ -29,7 +32,7 @@ class Register extends Component {
       password: this.state.password
     }
 
-    register(newUser).then(res => {
+    register(queryString.stringify(newUser)).then(res => {
       this.props.history.push(`/login`)
     })
   }
@@ -46,9 +49,9 @@ class Register extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  name="first_name"
+                  name="firstname"
                   placeholder="Enter your first name"
-                  value={this.state.first_name}
+                  value={this.state.firstname}
                   onChange={this.onChange}
                 />
               </div>
@@ -57,9 +60,9 @@ class Register extends Component {
                 <input
                   type="text"
                   className="form-control"
-                  name="last_name"
+                  name="lastname"
                   placeholder="Enter your lastname name"
-                  value={this.state.last_name}
+                  value={this.state.lastname}
                   onChange={this.onChange}
                 />
               </div>
